@@ -176,3 +176,6 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 data/
+
+final_scaled_features_with_userid.csv
+final_features_for_clustering.csv
