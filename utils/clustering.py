@@ -185,3 +185,44 @@ def create_radar_chart(df, figsize=(10, 10)):
 
     plt.tight_layout()
     plt.show()
+
+def grid_search_GMM(df: pd.DataFrame, components_list: list[int], num_iter: int = 4):
+    """
+    Perform a grid search for the best number of components in a Gaussian Mixture Model
+    (GMM) by evaluating the average silhouette score for multiple iterations.
+
+    :param df: Dataset on which clustering will be performed. Should be a 2D array-like
+        structure with samples as rows and features as columns.
+    :param components_list: List of integers specifying the number of components to
+        evaluate in the GMM.
+    :param num_iter: Number of iterations to compute silhouette scores for stability.
+        Defaults to 4 if not specified.
+    """
+    sil_scores = []
+    for n_comp in components_list:
+        gm = GaussianMixture(n_components=n_comp).fit(df)
+        labels = gm.predict(df)
+        score = np.mean([silhouette_score(df, labels) for _ in range(num_iter)])
+        sil_scores.append(score)
+        print(f'n_comp: {n_comp}, score: {score}')
+
+    plt.plot(components_list, sil_scores)
+    plt.xlabel('Number of components')
+    plt.ylabel('Silhouette score')
+    plt.title('Silhouette score by number of components')
+    plt.show()
+
+def fit_and_plot_GMM(df: pd.DataFrame, n_comp: int):
+    """
+    Fits a Gaussian Mixture Model (GMM) to the provided DataFrame and creates a radar
+    chart visualization based on the cluster centers. The function then prints the
+    counts of data points in each cluster determined by the GMM.
+
+    :param df: The input DataFrame containing data points to fit the Gaussian Mixture Model.
+    :param n_comp: The number of clusters to initialize in the Gaussian Mixture Model.
+    """
+    gm = GaussianMixture(n_components=n_comp).fit(df)
+    clusters = pd.DataFrame(gm.means_)
+    clusters.columns = df.columns
+    create_radar_chart(clusters)
+    print(pd.DataFrame(np.unique_counts(gm.predict(df)).counts))
