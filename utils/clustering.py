@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.cluster import HDBSCAN
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.mixture import GaussianMixture
 
 def run_hdbscan_grid_search(X_df: pd.DataFrame, min_cluster_size_list: list[int], cluster_selection_epsilon_list: list[float]) -> tuple[np.array, np.array, np.array]:
     """
