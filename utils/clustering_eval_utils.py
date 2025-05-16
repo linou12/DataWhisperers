@@ -1,4 +1,5 @@
 from unittest import case
+from tqdm import tqdm
 
 import numpy as np
 import sklearn
@@ -19,7 +20,7 @@ def evaluate_model(model, data, num_evals, aggregate='mean'):
     :return:
     """
     scores = list()
-    for i in range(num_evals):
+    for i in tqdm(range(num_evals)):
         model = sklearn.base.clone(model)
         fit_res = model.fit(data)
         score = silhouette_score(data, fit_res.labels_)
