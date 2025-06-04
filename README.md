@@ -24,3 +24,47 @@ pip install -r requirements.txt
 ```
 
 ## Structure
+
+You can find all results in the file ```m7_DataWhisperers.ipynb```.
+
+You can look at the results directly in the notebook. You can run it but it takes a large amount of time (~17h)
+
+.
+├── data
+│   └── Lernnavi
+│       ├── 2025-MLBD Lernnavi Data Description.docx
+│       ├── documents.csv.gz
+│       ├── events.csv.gz 
+│       ├── feedback.csv.gz
+│       ├── study
+│       │   ├── 2025-MLBD Lernnavi Study Data Description.docx
+│       │   ├── events.csv.gz
+│       │   ├── math_prepost_test.csv
+│       │   ├── postsurvey_formatted.csv
+│       │   ├── postsurvey_questions.txt
+│       │   ├── presurvey_formatted.csv
+│       │   ├── presurvey_questions.txt
+│       │   └── transactions.csv.gz
+│       ├── topics_translated.csv
+│       ├── topic_trees.csv.gz
+│       ├── transactions.csv.gz
+│       └── users.csv.gz
+├── df_q1.npy
+├── df_q2.npy
+├── dummy_notebook.ipynb
+├── features_final.csv
+├── final_features_for_clustering.csv
+├── final_scaled_features_with_userid.csv
+├── m4_DataWhisperers.ipynb
+├── m6_DataWhisperers.ipynb
+├── Milestone2
+│   ├── m2_lernnavi_312711.ipynb
+│   └── m2_lernnavi_325969-2025.ipynb
+├── README.md
+├── requirements.txt
+├── scaler.pkl
+└── utils
+    ├── clustering_eval_utils.py
+    ├── clustering.py
+    ├── feature_processing.py
+    └── memory_usage.py
