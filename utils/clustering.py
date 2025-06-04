@@ -4,6 +4,8 @@ from sklearn.cluster import HDBSCAN
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
+from tslearn.clustering import TimeSeriesKMeans
+
 
 def run_hdbscan_grid_search(X_df: pd.DataFrame, min_cluster_size_list: list[int], cluster_selection_epsilon_list: list[float]) -> tuple[np.array, np.array, np.array]:
     """
@@ -227,3 +229,38 @@ def fit_and_plot_GMM(df: pd.DataFrame, n_comp: int):
     clusters.columns = df.columns
     create_radar_chart(clusters)
     print(pd.DataFrame(np.unique_counts(gm.predict(df)).counts))
+
+def grid_search_dtw(cluster_sizes, max_iter, n_init, data, distance_matrix):
+    """
+    Performs grid search to find the optimal number of clusters for time series
+    data using Dynamic Time Warping (DTW) as the distance metric. This function
+    evaluates cluster configurations based on silhouette scores, calculated using
+    a precomputed distance matrix. For each specified cluster size, the clustering
+    model iteratively fits the data and computes the corresponding silhouette
+    score.
+
+    :param cluster_sizes: List of integers specifying the number of clusters to
+        evaluate.
+    :type cluster_sizes: list[int]
+    :param max_iter: Maximum number of iterations for the clustering algorithm.
+    :type max_iter: int
+    :param n_init: Number of times the K-Means algorithm will be run to choose the
+        best output based on inertia.
+    :type n_init: int
+    :param data: Time series data to be clustered.
+    :type data: pandas.DataFrame
+    :param distance_matrix: Precomputed distance matrix for the data, required for
+        silhouette score calculation.
+    :type distance_matrix: numpy.ndarray
+    :return: List of silhouette scores corresponding to each cluster configuration.
+    :rtype: list[float]
+    """
+    scores = []
+    for c in cluster_sizes:
+        print(f"Evaluating {c} clusters...")
+        m = TimeSeriesKMeans(n_clusters=c, metric="dtw",
+                         max_iter=max_iter, n_init=n_init)
+        preds = m.fit(data)
+        score = silhouette_score(distance_matrix, preds.labels_, metric='precomputed')
+        scores.append(score)
+    return scores
