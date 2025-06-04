@@ -7,3 +7,4 @@ scipy~=1.15.2
 seaborn~=0.13.2
 colorcet~=3.1.0
 tslearn
+keras~=3.9.2
