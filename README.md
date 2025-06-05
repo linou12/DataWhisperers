@@ -27,7 +27,9 @@ pip install -r requirements.txt
 
 You can find all results in the file ```m7_DataWhisperers.ipynb```.
 
-You can look at the results directly in the notebook. You can run it but it takes a large amount of time (~17h)
+You can look at the results directly in the notebook. You can run it but it takes a large amount of time
+
+If you want to run the notebook, we advise you to run ```m4_DataWhisperers.ipynb``` and ```m6_DataWhisperers.ipynb``` separately for the sake of your computer.
 ```
 .
 ├── data
@@ -54,8 +56,9 @@ You can look at the results directly in the notebook. You can run it but it take
 ├── features_final.csv
 ├── final_features_for_clustering.csv
 ├── final_scaled_features_with_userid.csv
-├── m4_DataWhisperers.ipynb
-├── m6_DataWhisperers.ipynb
+├── m4_DataWhisperers.ipynb                 <--- Notebook containing our work on HDBSCAN and GMM clustering
+├── m6_DataWhisperers.ipynb                 <--- Notebook containing our work on DTW clustering and our LSTM try
+├── m7_DataWhisperers.ipynb                 <--- Main notebook containing all our work
 ├── README.md
 ├── requirements.txt
 ├── scaler.pkl
