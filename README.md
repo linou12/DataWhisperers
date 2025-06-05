@@ -28,7 +28,7 @@ pip install -r requirements.txt
 You can find all results in the file ```m7_DataWhisperers.ipynb```.
 
 You can look at the results directly in the notebook. You can run it but it takes a large amount of time (~17h)
-
+```
 .
 ├── data
 │   └── Lernnavi
@@ -51,15 +51,11 @@ You can look at the results directly in the notebook. You can run it but it take
 │       └── users.csv.gz
 ├── df_q1.npy
 ├── df_q2.npy
-├── dummy_notebook.ipynb
 ├── features_final.csv
 ├── final_features_for_clustering.csv
 ├── final_scaled_features_with_userid.csv
 ├── m4_DataWhisperers.ipynb
 ├── m6_DataWhisperers.ipynb
-├── Milestone2
-│   ├── m2_lernnavi_312711.ipynb
-│   └── m2_lernnavi_325969-2025.ipynb
 ├── README.md
 ├── requirements.txt
 ├── scaler.pkl
@@ -68,3 +64,4 @@ You can look at the results directly in the notebook. You can run it but it take
     ├── clustering.py
     ├── feature_processing.py
     └── memory_usage.py
+```
